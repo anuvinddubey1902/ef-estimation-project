@@ -1,0 +1,15 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local environment and secrets
+.env
+.venv/
+venv/
+
+# Dataset archives
+*.zip

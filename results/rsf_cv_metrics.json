@@ -1,0 +1,10 @@
+{
+  "cv_folds": 5,
+  "random_state": 42,
+  "ef_only_mean_c_index": 0.6274,
+  "ef_only_sd": 0.0818,
+  "full_feature_mean_c_index": 0.7266,
+  "full_feature_sd": 0.0653,
+  "mean_c_index_difference": 0.0992,
+  "note": "Five-fold cross-validation on the UCI Heart Failure Clinical Records dataset; preliminary results, not clinical validation."
+}

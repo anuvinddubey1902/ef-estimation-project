@@ -1,0 +1,9 @@
+{
+  "evaluation": "5-fold cross-validation",
+  "time_horizon_days": 100,
+  "mean_brier_score": 0.1553,
+  "standard_deviation": 0.0261,
+  "dataset": "UCI Heart Failure Clinical Records",
+  "model": "Full-feature Random Survival Forest",
+  "note": "Preliminary evaluation; not clinically validated."
+}

@@ -1,0 +1,8 @@
+{
+  "time_horizon_days": 100,
+  "method": "5-fold cross-validation with inverse-probability-of-censoring weighting",
+  "mean_brier_score": 0.1553,
+  "brier_score_sd": 0.0261,
+  "calibration_bins": 4,
+  "note": "Preliminary results on the UCI Heart Failure Clinical Records dataset; not clinically validated."
+}

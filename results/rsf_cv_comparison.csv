@@ -1,0 +1,3 @@
+Model,Mean CV C-index,SD across folds
+EF-only RSF,0.6274,0.0818
+Full-feature RSF,0.7266,0.0653

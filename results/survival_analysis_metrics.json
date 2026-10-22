@@ -1,0 +1,9 @@
+{
+  "dataset_rows": 299,
+  "dataset_columns": 13,
+  "cox_apparent_c_index": 0.7408047632766734,
+  "logrank_statistic": 1.6745,
+  "logrank_p_value": 0.195651,
+  "ef_ph_test_p_value": 0.0127,
+  "interpretation": "Potential proportional-hazards violation for EF; the C-index is an apparent training-data estimate."
+}
