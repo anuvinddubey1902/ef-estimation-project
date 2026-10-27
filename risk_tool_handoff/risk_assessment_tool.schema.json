@@ -1,0 +1,115 @@
+{
+  "name": "risk_assessment_tool",
+  "description": "Estimate survival and event probabilities from required clinical inputs. Experimental model; not clinically validated. Never infer missing clinical data.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "patient_data": {
+        "type": "object",
+        "description": "All 11 required clinical model inputs.",
+        "properties": {
+          "age": {
+            "type": "number",
+            "description": "Age in years"
+          },
+          "anaemia": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ]
+          },
+          "creatinine_phosphokinase": {
+            "type": "number",
+            "description": "CPK, mcg/L"
+          },
+          "diabetes": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ]
+          },
+          "ejection_fraction": {
+            "type": "number",
+            "description": "Ejection fraction, percent"
+          },
+          "high_blood_pressure": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ]
+          },
+          "platelets": {
+            "type": "number",
+            "description": "Platelet count in source-dataset units"
+          },
+          "serum_creatinine": {
+            "type": "number",
+            "description": "Serum creatinine, mg/dL"
+          },
+          "serum_sodium": {
+            "type": "number",
+            "description": "Serum sodium, mEq/L"
+          },
+          "sex": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Source-dataset coding"
+          },
+          "smoking": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ]
+          }
+        },
+        "required": [
+          "age",
+          "anaemia",
+          "creatinine_phosphokinase",
+          "diabetes",
+          "ejection_fraction",
+          "high_blood_pressure",
+          "platelets",
+          "serum_creatinine",
+          "serum_sodium",
+          "sex",
+          "smoking"
+        ],
+        "additionalProperties": false
+      },
+      "horizon_days": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "default": 100,
+        "description": "Prediction horizon in days, supported by the fitted model"
+      }
+    },
+    "required": [
+      "patient_data"
+    ],
+    "additionalProperties": false
+  },
+  "output_fields": {
+    "success": [
+      "status",
+      "risk_assessed",
+      "horizon_days",
+      "survival_probability",
+      "event_probability",
+      "model"
+    ],
+    "error": [
+      "status",
+      "risk_assessed",
+      "error.code",
+      "error.message"
+    ]
+  }
+}

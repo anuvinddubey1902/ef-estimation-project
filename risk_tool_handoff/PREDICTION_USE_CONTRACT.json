@@ -1,0 +1,90 @@
+{
+  "contract_name": "Prediction Use and Separation of Responsibilities",
+  "version": "1.0.0",
+  "status": "experimental",
+  "purpose": "Define permitted uses and limitations of model predictions, separating individual-level reporting from statistical analysis.",
+  "responsibilities": {
+    "risk_model": [
+      "Return survival and event probability estimates only when prediction succeeds.",
+      "Report the requested prediction horizon.",
+      "Reject invalid inputs and unsupported horizons.",
+      "Do not assign clinical diagnoses or risk categories."
+    ],
+    "reporting_agent": [
+      "Check prediction status before using any result.",
+      "Never present an error or unavailable prediction as a valid estimate.",
+      "Preserve the prediction horizon and model limitations.",
+      "Do not invent missing clinical inputs or infer them from an image.",
+      "Do not present experimental estimates as diagnoses or clinical recommendations."
+    ],
+    "human_reviewer": [
+      "Review individual-level reports before any consequential use.",
+      "Interpret model outputs in context and seek qualified clinical judgment where relevant."
+    ]
+  },
+  "individual_report_policy": {
+    "allowed": [
+      "Report survival_probability and event_probability when status is success and risk_assessed is true.",
+      "State the prediction horizon and identify the output as an experimental model estimate.",
+      "Include relevant model limitations and the absence of external clinical validation."
+    ],
+    "required_checks": [
+      "status equals success",
+      "risk_assessed equals true",
+      "both probabilities are present and between 0 and 1",
+      "probabilities sum to approximately 1",
+      "prediction horizon is present"
+    ],
+    "prohibited": [
+      "Presenting the estimate as a diagnosis or an individual clinical outcome certainty.",
+      "Giving treatment recommendations based solely on the model output.",
+      "Assigning low, medium, or high risk categories without independently validated thresholds.",
+      "Using missing, invalid, or failed predictions as if they were valid results."
+    ],
+    "risk_category": null
+  },
+  "statistical_analysis_policy": {
+    "allowed": [
+      "Analyze model outputs in aggregate for research and evaluation.",
+      "Report cohort size, analysis method, prediction horizon, and relevant uncertainty or limitations.",
+      "Distinguish internal cross-validation results from external validation."
+    ],
+    "required_checks": [
+      "Document the cohort and inclusion criteria.",
+      "Describe missing-data handling and exclusions.",
+      "Avoid treating repeated observations from the same patient as independent unless the method accounts for clustering.",
+      "Report appropriate uncertainty and evaluation metrics when available.",
+      "Identify analyses as exploratory when evidence is insufficient for confirmatory claims."
+    ],
+    "prohibited": [
+      "Claiming clinical validity or generalizability from internal evaluation alone.",
+      "Presenting association or predictive performance as proof of causation.",
+      "Using unvalidated thresholds to classify individual patients.",
+      "Suppressing material limitations or failed evaluations."
+    ],
+    "risk_category": null
+  },
+  "risk_category_policy": {
+    "field": "risk_category",
+    "required_value_until_validation": null,
+    "allowed_values_after_validation": [],
+    "activation_requirements": [
+      "Documented rationale for each threshold.",
+      "Independent validation in a relevant target population.",
+      "Clinical review and approval for the intended use.",
+      "Versioned documentation of thresholds, validation evidence, and limitations."
+    ],
+    "note": "No risk categories or thresholds are currently approved by this contract."
+  },
+  "failure_policy": {
+    "missing_or_invalid_inputs": "Do not generate or report a valid risk estimate.",
+    "tool_error": "Preserve the error status and communicate that the estimate is unavailable.",
+    "invalid_output": "Reject outputs that fail the required probability and horizon checks."
+  },
+  "model_context": {
+    "dataset": "UCI Heart Failure Clinical Records",
+    "development_records": 299,
+    "external_clinical_validation": false,
+    "clinical_use_authorized": false
+  }
+}

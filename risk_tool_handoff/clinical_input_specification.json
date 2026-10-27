@@ -1,0 +1,146 @@
+{
+  "tool_name": "risk_assessment_tool",
+  "status": "experimental_not_clinically_validated",
+  "policy": "All fields are mandatory. Ranges below are software sanity checks, not clinically validated reference ranges or decision thresholds.",
+  "fields": [
+    {
+      "name": "age",
+      "type": "number",
+      "units": "years",
+      "mandatory": true,
+      "software_range": {
+        "min": 0,
+        "max": 120
+      },
+      "range_enforced_by": "predictor"
+    },
+    {
+      "name": "anaemia",
+      "type": "integer",
+      "units": "source-dataset binary coding",
+      "mandatory": true,
+      "software_range": {
+        "allowed_values": [
+          0,
+          1
+        ]
+      },
+      "range_enforced_by": "predictor"
+    },
+    {
+      "name": "creatinine_phosphokinase",
+      "type": "number",
+      "units": "mcg/L",
+      "mandatory": true,
+      "software_range": {
+        "min": 0,
+        "max": 1000000
+      },
+      "range_enforced_by": "predictor"
+    },
+    {
+      "name": "diabetes",
+      "type": "integer",
+      "units": "source-dataset binary coding",
+      "mandatory": true,
+      "software_range": {
+        "allowed_values": [
+          0,
+          1
+        ]
+      },
+      "range_enforced_by": "predictor"
+    },
+    {
+      "name": "ejection_fraction",
+      "type": "number",
+      "units": "percent",
+      "mandatory": true,
+      "software_range": {
+        "min": 0,
+        "max": 100
+      },
+      "range_enforced_by": "predictor"
+    },
+    {
+      "name": "high_blood_pressure",
+      "type": "integer",
+      "units": "source-dataset binary coding",
+      "mandatory": true,
+      "software_range": {
+        "allowed_values": [
+          0,
+          1
+        ]
+      },
+      "range_enforced_by": "predictor"
+    },
+    {
+      "name": "platelets",
+      "type": "number",
+      "units": "source-dataset units",
+      "mandatory": true,
+      "software_range": {
+        "min": 0,
+        "max": 10000000
+      },
+      "range_enforced_by": "predictor"
+    },
+    {
+      "name": "serum_creatinine",
+      "type": "number",
+      "units": "mg/dL",
+      "mandatory": true,
+      "software_range": {
+        "min": 0,
+        "max": 100
+      },
+      "range_enforced_by": "predictor"
+    },
+    {
+      "name": "serum_sodium",
+      "type": "number",
+      "units": "mEq/L",
+      "mandatory": true,
+      "software_range": {
+        "min": 0,
+        "max": 250
+      },
+      "range_enforced_by": "predictor"
+    },
+    {
+      "name": "sex",
+      "type": "integer",
+      "units": "source-dataset binary coding",
+      "mandatory": true,
+      "software_range": {
+        "allowed_values": [
+          0,
+          1
+        ]
+      },
+      "range_enforced_by": "predictor"
+    },
+    {
+      "name": "smoking",
+      "type": "integer",
+      "units": "source-dataset binary coding",
+      "mandatory": true,
+      "software_range": {
+        "allowed_values": [
+          0,
+          1
+        ]
+      },
+      "range_enforced_by": "predictor"
+    }
+  ],
+  "additional_fields_allowed": false,
+  "missing_data_policy": "Reject incomplete inputs. Do not infer clinical values from EF, uncertainty, images, or masks.",
+  "important_notes": [
+    "All 11 fields are mandatory.",
+    "Software sanity ranges are not clinically validated reference ranges.",
+    "Confirm dataset coding and units before entering real clinical records.",
+    "The MCP schema requires the fields and checks their data types; the predictor enforces binary values of 0 or 1 and configured numeric sanity ranges."
+  ]
+}

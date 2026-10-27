@@ -13,3 +13,11 @@ venv/
 
 # Dataset archives
 *.zip
+# Runtime files
+logs/*.log
+logs/*.pid
+# Local backups
+*.py.bak
+# Local credentials
+.env.*
+!.env.example
